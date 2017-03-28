@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "48886463696",
+    "firebase_url": "https://cloud126-48041.firebaseio.com",
+    "project_id": "cloud126-48041",
+    "storage_bucket": "cloud126-48041.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48886463696:android:82ca53cd587e9678",
+        "android_client_info": {
+          "package_name": "com.nexflare.cloud126"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48886463696-38l5aouv3flksq32lof7377kvvh0s6km.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3lZF5SBJjtssmSl6puc7ASHth7836Rp0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
