@@ -17,7 +17,7 @@ public class DowloadFile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dowload_file);
         if(checkconnectivity()){
-            String url = "https://drive.google.com/uc?export=download&id=0B9NpHK3OkbMXMjFSSFQ4Q1huMnM";
+            String url = "https://drive.google.com/uc?export=download&id=0B9NpHK3OkbMXMjFS000000000000000000000000000SFQ4Q1huMnM";
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
             request.setDescription("Some descrition");
             request.setTitle("Some title");

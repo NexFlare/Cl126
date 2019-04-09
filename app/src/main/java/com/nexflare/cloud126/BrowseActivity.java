@@ -12,12 +12,16 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.nexflare.cloud126.pojos.mainPagePojo;
 
@@ -31,6 +35,27 @@ public class BrowseActivity extends AppCompatActivity {
     ArrayList<mainPagePojo> arrList;
     TextView tvNotes,tvDownload,tvMenu,tvTut;
     CardView cvNotes,cvDownload,cvMenu,cvTut;
+    FirebaseAuth firebaseAuth;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.action_sign_out){
+            if(firebaseAuth.getCurrentUser()!=null) {
+                firebaseAuth.signOut();
+                startActivity(new Intent(BrowseActivity.this,MainActivity.class));
+                finish();
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.nav,menu);
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +64,7 @@ public class BrowseActivity extends AppCompatActivity {
         cvTut= (CardView) findViewById(R.id.cardView2);
         cvMenu= (CardView) findViewById(R.id.cardView3);
         cvDownload= (CardView) findViewById(R.id.cardView4);
+        firebaseAuth=FirebaseAuth.getInstance();
         cvNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -113,10 +113,16 @@ public class browseDataBase extends AppCompatActivity {
                             else{
                                 createFolder();
                                 FirebaseStorage storage=FirebaseStorage.getInstance();
-                                final StorageReference store=storage.getReferenceFromUrl(dataSnapshot.getValue(String.class));
-                                Toast.makeText(browseDataBase.this, dataSnapshot.getValue(String.class), Toast.LENGTH_SHORT).show();
-                                String link=dataSnapshot.getValue(String.class);
-                                downloadFile(link,store);
+                                if(dataSnapshot.getValue(String.class).contains("https://")) {
+                                    Log.d("TAGGER", "onDataChange: "+dataSnapshot.getValue());
+                                    final StorageReference store = storage.getReferenceFromUrl(dataSnapshot.getValue(String.class));
+                                    //Toast.makeText(browseDataBase.this, dataSnapshot.getValue(String.class), Toast.LENGTH_SHORT).show();
+                                    String link = dataSnapshot.getValue(String.class);
+                                    downloadFile(link, store);
+                                }
+                                else {
+                                    Toast.makeText(browseDataBase.this, "This document is not available.", Toast.LENGTH_SHORT).show();
+                                }
                                 //new downloadFileFromUrl().execute(link,store.getParent().getName()+" "+store.getName());https://firebasestorage.googleapis.com/v0/b/cloud126-48041.appspot.com/o/Notes%2FSem%204%2FOS%2FOS%20T1.pdf?alt=media&token=fa557c48-4122-4a45-9e51-8a728bd7d305
                             }
                         }
@@ -262,7 +268,7 @@ public class browseDataBase extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 progress.setVisibility(View.INVISIBLE);
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    Toast.makeText(browseDataBase.this, ds.getKey(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(browseDataBase.this, ds.getKey(), Toast.LENGTH_SHORT).show();
                     arrList.add(ds.getKey());
                 }
                 adapter.notifyDataSetChanged();
@@ -270,7 +276,7 @@ public class browseDataBase extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(browseDataBase.this, "ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(browseDataBase.this, "ERROR "+databaseError.getMessage()+" "+databaseError.getDetails(), Toast.LENGTH_SHORT).show();
             }
         });
     }
